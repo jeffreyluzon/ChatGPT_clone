@@ -6,30 +6,29 @@ import './App.css';
 
 
 function App() {
-  // const configuration = new Configuration({
-  //   apiKey: import.meta.env.API_KEY,
-  // });
+  const [prompt, setPrompt] = useState('');
+  const APIKEY = process.env.REACT_APP_API_KEY
+  const configuration = new Configuration({
+    apiKey: APIKEY,
+  });
 
-  // const openai = new OpenAIApi(configuration);
+  const openai = new OpenAIApi(configuration);
 
-  // const generateImage = async () => {
-  //   const res = await openai.createImage({
-  //     prompt: "Say this is a test",
-  //     n: 1,
-  //     size: '1024x1024'
-  //   });
+  const generateImage = async () => {
+    const res = await openai.createImage({
+      prompt: "this is a test",
+      n: 1,
+      size: '1024x1024'
+    });
 
-  //   console.log(res)
-  // }
-    const APIKEY = process.env.REACT_APP_API_KEY
-    const showApiKey = () => {
-      console.log(APIKEY)
-    }
+    console.log(res)
+  }
 
   return (
     <div className='App'>
-      <button onClick={showApiKey}>showApiKey</button>
-      <button onClick={generateImage}>generate IMage</button>
+      <input type="text" className='app-input' />
+      <button onClick={generateImage}>generate Image</button>
+      {/* <img src={} alt="" /> */}
     </div>
   );
 }
